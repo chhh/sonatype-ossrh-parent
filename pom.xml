@@ -5,14 +5,21 @@
 
     <groupId>com.github.chhh</groupId>
     <artifactId>sonatype-ossrh-parent</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.5</version>
 
     <name>${project.artifactId}</name>
     <description>Parent pom to ease deployment to Maven Central</description>
     <packaging>pom</packaging>
 
 
-    <url>http://github.com/chhh/sonatype-ossrh-parent</url>
+    <url>https://github.com/chhh/sonatype-ossrh-parent</url>
+
+    <scm>
+        <connection>${scm.url}</connection>
+        <developerConnection>${scm.url}</developerConnection>
+        <url>${scm.url}</url>
+        <tag>v0.5</tag>
+    </scm>
 
 
     <properties>
@@ -52,12 +59,9 @@
     </developers>
 
 
-    <scm>
-        <connection>${scm.url}</connection>
-        <developerConnection>${scm.url}</developerConnection>
-        <url>${scm.url}</url>
-        <tag>0.1</tag>
-    </scm>
+    <prerequisites>
+        <maven>3.0.4</maven>
+    </prerequisites>
 
 
     <build>
@@ -73,6 +77,19 @@
                     <goals>deploy</goals>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    <!--<skipStagingRepositoryClose>true</skipStagingRepositoryClose>-->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -82,18 +99,6 @@
             <id>release</id>
             <build>
                 <plugins>
-
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.7</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
 
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -108,7 +113,6 @@
                             </execution>
                         </executions>
                     </plugin>
-
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
