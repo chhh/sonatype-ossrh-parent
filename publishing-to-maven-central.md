@@ -99,5 +99,12 @@ In your actual project set the `parent`:
 ```
 Notice how we used `relativePath` to give maven a hint at where to search for this POM. The parent project was resiging in a sibling directory next to the project directory in this case. Otherwise the POM would have to be in the parent directory of your project.
 
-
-
+## Releasing the project 'more' manulally
+We'll use just the `nexus-staging-maven-plugin` plugin. If it sees that the `<version>` in your
+project's pom doesn't end with `-SNAPSHOT` it will deploy the artifact to staging area,
+which will run the checks, and if all is fine will auto-close the staging repo and release it.
+We only need to tell maven to add javadocs and sources as is required by Sonatype OSSRH
+and sign all the files. We already have everything set up for the `maven-release-plugin` in `<profiles>`.
+To tell maven to use the profile add `-P` switch like this:  
+`mvn -Prelease clean deploy`   
+_release_ here is the name of the profile
