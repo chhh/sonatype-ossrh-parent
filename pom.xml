@@ -5,7 +5,7 @@
 
     <groupId>com.github.chhh</groupId>
     <artifactId>sonatype-ossrh-parent</artifactId>
-    <version>0.6-SNAPSHOT</version>
+    <version>0.6</version>
 
     <name>${project.artifactId}</name>
     <description>Parent pom to ease deployment to Maven Central</description>
@@ -18,7 +18,7 @@
         <connection>${scm.url}</connection>
         <developerConnection>${scm.url}</developerConnection>
         <url>${scm.url}</url>
-        <tag>v0.5</tag>
+        <tag>0.6</tag>
     </scm>
 
 
@@ -81,7 +81,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
+                <version>1.6.8</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
