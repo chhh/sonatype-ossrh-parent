@@ -99,7 +99,7 @@ In your actual project set the `parent`:
 ```
 Notice how we used `relativePath` to give maven a hint at where to search for this POM. The parent project was resiging in a sibling directory next to the project directory in this case. Otherwise the POM would have to be in the parent directory of your project.
 
-## Releasing the project 'more' manulally
+## Releasing the project 'more' manually
 We'll use just the `nexus-staging-maven-plugin` plugin. If it sees that the `<version>` in your
 project's pom doesn't end with `-SNAPSHOT` it will deploy the artifact to staging area,
 which will run the checks, and if all is fine will auto-close the staging repo and release it.
